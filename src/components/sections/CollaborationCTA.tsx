@@ -7,41 +7,41 @@ import { ArrowRight, Handshake } from 'lucide-react';
 
 export function CollaborationCTA() {
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 hero-gradient" />
-      <div className="absolute inset-0 pattern-dots opacity-20" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-400/20 rounded-full blur-[120px]" />
-
-      <div className="container relative z-10 px-4 md:px-6">
+    <section className="bg-[#0067b1] py-16 text-white md:py-20">
+      <div className="container px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center"
+          className="mx-auto max-w-4xl text-center"
         >
-          <div className="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center mx-auto mb-6">
-            <Handshake className="w-8 h-8 text-blue-500" />
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center border border-white/30 bg-white/10">
+            <Handshake className="h-8 w-8 text-white" />
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="mb-4 text-3xl font-bold md:text-4xl">
             Mari Berkolaborasi dengan HMTI
           </h2>
 
-          <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+          <p className="mx-auto mb-8 max-w-2xl text-lg leading-8 text-white/85">
             HMTI UBSI Margonda terbuka untuk kerja sama dengan kampus, komunitas,
             brand, dan stakeholder lainnya. Mari bersama menciptakan dampak positif!
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="group">
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
+            <Button asChild size="lg" className="group bg-white text-blue-700 hover:bg-blue-50">
               <Link href="/kolaborasi">
                 Ajukan Kolaborasi
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="border-white/60 bg-transparent text-white hover:bg-white hover:text-blue-700"
+            >
               <Link href="/kontak">Hubungi Kami</Link>
             </Button>
           </div>
