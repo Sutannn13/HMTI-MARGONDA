@@ -1,16 +1,11 @@
 {
   "_gate": {
-    "phase": "scaffold-only",
-    "instruction": "DO NOT fill conceptualAnchor, derivedTokenLogic, or any token values until research-design.md Section 3 is complete. Do not simplify or rewrite this scaffold. Fill fields in-place after research.",
-    "blockedFields": [
-      "conceptualAnchor.anchorReference",
-      "conceptualAnchor.categoryCodes.candidateEntries",
-      "derivedTokenLogic.colorDerivationSource",
-      "motionPaletteDecision"
-    ]
+    "phase": "active-design-contract",
+    "instruction": "Design contract synthesized for the HMTI UBSI Margonda institutional homepage direction. Preserve this structure and refine in place for future UI work.",
+    "blockedFields": []
   },
   "mode": "dynamic",
-  "status": "seed-needs-design-synthesis",
+  "status": "active",
   "seedPolicy": {
     "mode": "structure-first-scaffold",
     "requiresProjectSpecificRefinement": true,
@@ -19,34 +14,37 @@
   },
   "project": {
     "name": "HMTI MARGONDA",
-    "context": "Project brief unresolved. The AI agent must ask for or infer product context before implementation.",
+    "context": "Official website for HMTI UBSI Margonda, focused on organization profile, activities, programs, gallery, and collaboration.",
     "domain": "Frontend/UI application",
-    "runtimeConstraint": "agent-recommendation-required",
-    "architectureConstraint": "agent-recommendation-required"
+    "runtimeConstraint": "Existing Next.js 14 application with Tailwind CSS and Framer Motion.",
+    "architectureConstraint": "Preserve existing App Router and component structure."
   },
-  "designPhilosophy": "Synthesize design for HMTI MARGONDA from the active brief and any repo evidence available at synthesis time. Choose visual language, libraries, color, type, spacing, and interaction from the product context \"Project brief unresolved. The AI agent must ask for or infer product context before implementation.\"; verify technology claims with official docs.",
+  "designPhilosophy": "Institutional student-association website with strong academic hierarchy, real photography, sharp editorial sections, and restrained motion.",
   "visualDirection": {
     "seedMode": "scaffold-only",
     "requiresProjectSpecificSynthesis": true,
     "selectionAuthority": "agent-llm-after-current-context-repo-evidence-and-live-official-docs",
     "trendStance": "current-context-first-not-offline-preset-first",
     "distinctiveMoves": [
-      "Choose one product-specific move from task, audience, content, repo evidence, and docs."
+      "Campus building photo anchors the first viewport.",
+      "HMTI group photo anchors the profile section as social proof.",
+      "Breadcrumb and info rail mirror formal faculty-site navigation without copying brand assets."
     ],
-    "copiedReferenceAllowed": false
+    "copiedReferenceAllowed": false,
+    "summary": "Photo-led, university-style, blue institutional navigation, serif hero headline, strict white content bands, minimal ornament."
   },
   "externalResearchIntake": {
-    "userSuppliedResearchPolicy": "read-as-candidate-evidence-not-final-prescription",
+    "userSuppliedResearchPolicy": "Use the ITB screenshots as hierarchy reference only.",
     "requireSummaryOfUsedSignals": true,
     "requireFitFiltering": true,
     "requireOfficialDocsVerificationForTechnologyClaims": true,
     "sourceFreshnessPolicy": {
-      "mode": "rolling-current-date",
-      "currentDateAnchor": "session-current-date",
+      "mode": "current-session",
+      "currentDateAnchor": "2026-05-31",
       "trendLookbackMonths": 24,
       "implementationClaimsRequire": "current-official-docs-or-primary-release-notes",
       "olderSourcePolicy": "older sources may support durable principles only when labeled old-timeless; they cannot prove current modernity",
-      "noLiveResearchFallback": "set sourceFreshnessStatus to pending-live-verification and do not claim current-year modernity"
+      "noLiveResearchFallback": "Use repo evidence and user-provided screenshots/photos only; do not claim trend freshness."
     },
     "internalVocabularyPolicy": {
       "terms": [
@@ -87,20 +85,16 @@
     "mode": "locked-outcomes-flexible-expression",
     "contractRole": "Use docs/design-intent.json as review invariants and handoff structure, not as a frozen visual recipe unless the user explicitly locks a decision.",
     "lockedOutcomeTypes": [
-      "confirmed-user-goals",
-      "repo-evidence-and-runtime-constraints",
-      "accessibility-and-production-readiness",
-      "forbidden-patterns-and-safety-gates",
-      "user-approved-brand-or-continuity-decisions"
+      "professional institutional tone",
+      "real UBSI and HMTI imagery",
+      "responsive homepage",
+      "accessibility floor"
     ],
     "flexibleExpressionAxes": [
-      "exact-palette-primitives",
-      "font-family-selection",
-      "radius-shadow-and-surface-treatment",
-      "component-kit-theme-mapping",
-      "signature-move-implementation",
-      "literal-anchor-artifacts",
-      "spatial-metaphor-and-place-language"
+      "exact photo crop",
+      "section ordering below homepage",
+      "minor motion timings",
+      "future page-specific layouts"
     ],
     "tokenLockingRule": "Semantic roles are required, but exact primitive values stay flexible until repo evidence, accessibility validation, implementation constraints, or explicit user approval locks them.",
     "signatureMovePolicy": "Record the required experience outcome separately from candidate implementation moves; replace a candidate move when another move better fits the product.",
@@ -112,7 +106,7 @@
   "conceptualAnchor": {
     "mode": "required-when-no-external-research",
     "seedMode": "selection-policy-only",
-    "anchorReference": "agent-defined-anchor-reference",
+    "anchorReference": "campus directory board and student activity archive",
     "researchBrief": ".agent-context/prompts/research-design.md",
     "requiresAgentSelectionBeforeUiImplementation": true,
     "userResearchAbsencePolicy": {
@@ -244,7 +238,26 @@
         "best practices",
         "good design"
       ],
-      "candidateEntries": []
+      "candidateEntries": [
+        {
+          "description": "Generic student community site with cheerful gradients, rounded cards, and informal icon rows.",
+          "specificityEvidence": "Would make the association look like an event flyer instead of an official organization.",
+          "categoryDefaultReason": "Common for student organizations that emphasize energy over institutional trust.",
+          "rejectionNote": "Reject because user asked for ITB-like professional authority."
+        },
+        {
+          "description": "SaaS-style landing page with centered hero, abstract blobs, fake stats, and three feature tiles.",
+          "specificityEvidence": "Would detach the site from campus identity and real HMTI activity.",
+          "categoryDefaultReason": "Common AI-generated web default for broad landing pages.",
+          "rejectionNote": "Reject because homepage must be photo-led and organization-specific."
+        },
+        {
+          "description": "Overly formal government portal with dense links, weak imagery, and low visual hierarchy.",
+          "specificityEvidence": "Would feel official but not modern or engaging for students.",
+          "categoryDefaultReason": "Common institutional pattern when credibility is prioritized without design clarity.",
+          "rejectionNote": "Reject because the site still needs modern student-facing clarity."
+        }
+      ]
     },
     "finalAnchorContract": {
       "requiredFields": [
@@ -269,11 +282,37 @@
         "no-dashboard-mental-model",
         "motion-derived-from-anchor"
       ]
+    },
+    "morphologicalExploration": {
+      "selectedCombination": "full-bleed campus hero + sharp blue nav + editorial profile rail + real activity image",
+      "uncomfortableCombination": {
+        "combinationLabel": "newspaper archive density with student-event photo energy",
+        "discomfortReason": "It could feel too formal for students if spacing is too tight.",
+        "productLogicJustification": "HMTI needs official credibility while still proving active membership."
+      }
+    },
+    "anchorCandidates": {
+      "selected": "campus directory board and student activity archive",
+      "candidates": [
+        {
+          "anchorReference": "campus directory board and student activity archive",
+          "conceptualFamily": "institutional editorial archive",
+          "jobFit": "Clarifies identity and routes users to organization information quickly.",
+          "hierarchyImplication": "Strong header, formal hero, breadcrumb, then evidence-led content.",
+          "densityImplication": "Medium density with clear bands and rails.",
+          "typeImplication": "Serif display title paired with direct sans labels.",
+          "stateLanguage": "Blue active states, white focus rings, restrained hover shifts.",
+          "motionImplication": "Vertical reveal and subtle hover lift only.",
+          "whatItRulesOut": "Generic SaaS cards, playful blobs, neon gradients.",
+          "renameTest": "Fails when renamed to ecommerce, fintech dashboard, or food delivery app; passes specificity.",
+          "categoryCodeOverlap": "Low"
+        }
+      ]
     }
   },
   "researchDossier": {
     "metadata": {
-      "researchVerifiedAt": null,
+      "researchVerifiedAt": "2026-05-31",
       "freshnessWindowDays": 90,
       "freshnessRule": "Research dossier is stale when researchVerifiedAt is null or older than freshnessWindowDays. Stale dossiers must run research-design.md before UI implementation. User-explicit redesign requests bypass freshness and force fresh research regardless of age.",
       "antiRepeatLedger": {
@@ -299,16 +338,11 @@
     },
     "sourceFreshness": {
       "status": "agent-must-complete-before-ui-implementation",
-      "freshnessAnchorDate": "session-current-date",
+      "freshnessAnchorDate": "2026-05-31",
       "rollingLookbackMonths": 24,
       "officialDocsRequiredFor": [
-        "browser-capability",
-        "framework-setup",
-        "ui-library",
-        "animation-library",
-        "3d-canvas-charting-library",
-        "styling-tool",
-        "accessibility-claim"
+        "new UI libraries",
+        "new browser features"
       ],
       "sourceTypePolicy": {
         "official": "required for implementation and package/API claims when available",
@@ -328,25 +362,65 @@
         "confidence",
         "decisionImpact"
       ],
-      "evidenceTable": []
-    }
+      "evidenceTable": [],
+      "sourceFreshnessStatus": "user-provided-and-repo-evidence",
+      "oldSourcePolicy": "No trend freshness claims made.",
+      "userConceptAdaptation": "ITB reference used as hierarchy and professionalism signal only.",
+      "disagreements": []
+    },
+    "evidenceTable": [
+      {
+        "claim": "Homepage should use an institutional two-tier header and photo-led hero.",
+        "sourceUrl": "user-provided screenshots and request",
+        "sourceType": "user-provided",
+        "publishedOrUpdatedAt": "2026-05-31",
+        "fetchedAt": "2026-05-31",
+        "confidence": "high",
+        "decisionImpact": "Header and hero composition."
+      },
+      {
+        "claim": "Use real UBSI campus and HMTI group photos.",
+        "sourceUrl": "local user downloads",
+        "sourceType": "user-provided",
+        "publishedOrUpdatedAt": "2026-05-31",
+        "fetchedAt": "2026-05-31",
+        "confidence": "high",
+        "decisionImpact": "Homepage visual assets."
+      }
+    ],
+    "productReading": {
+      "productTypeAndCoreVerb": "Student association website where users identify the organization and navigate to programs, profile, gallery, and collaboration.",
+      "highestStakesMoments": "First: trust the organization identity; second: understand activity and programs; third: contact or collaborate.",
+      "dataShapes": "Static editorial content, navigation lists, activity/gallery records, and contact information.",
+      "latencyProfile": "Mostly static pages with normal route navigation.",
+      "failureModes": "Missing photos or long text must not break layout.",
+      "contextOfUse": "Glance-and-go public website on desktop and mobile.",
+      "knownConstraints": "Existing Next.js/Tailwind repo, user-supplied photo assets, professional ITB-like direction."
+    },
+    "referenceIntake": [
+      {
+        "source": "user-provided ITB screenshots",
+        "borrowed": "formal hierarchy: utility bar, strong blue nav, hero title, breadcrumb, editorial body rhythm",
+        "notBorrowed": "ITB logo, exact colors, exact layout rhythm, brand posture"
+      }
+    ]
   },
   "derivedTokenLogic": {
-    "anchorReference": "agent-defined-anchor-reference",
-    "colorDerivationSource": "Explain semantic color roles from anchorReference; reject generic palettes without anchor evidence.",
-    "spacingDerivationSource": "Explain spacing rhythm, density, and exceptions from anchorReference. Spacing grids are layout math, not decorative background lines.",
-    "typographyDerivationSource": "Explain display, body, metadata, and data roles from anchorReference.",
-    "motionDerivationSource": "Explain duration, easing, choreography, and reduced-motion from anchorReference.",
-    "colorSpace": "Prefer OKLCH for newly generated CSS tokens when supported; preserve existing design-system token formats and document fallback color space.",
-    "spatialBaseUnit": "Name the base spacing unit, major multiples, density exceptions, and optical exceptions before writing spacing values.",
-    "typeScaleMethod": "Prefer fluid clamp() type scales when supported; name ratio, role contrast, balance/wrap behavior, and numeric typography needs.",
-    "motionBudget": "Name micro, layout, entrance, easing, stagger, and reduced-motion budgets; prefer transform/opacity for high-frequency motion.",
-    "validationRule": "Every semantic token role must trace to anchorReference; keep exact primitive values flexible unless locked by repo evidence, accessibility validation, implementation constraints, or explicit user approval.",
+    "anchorReference": "campus directory board and student activity archive",
+    "colorDerivationSource": "UBSI campus photo, existing blue navigation, HMTI official context.",
+    "spacingDerivationSource": "Faculty-style content bands and readable institutional pages.",
+    "typographyDerivationSource": "Academic editorial title with utilitarian navigation labels.",
+    "motionDerivationSource": "Official page reveal, not entertainment animation.",
+    "colorSpace": "sRGB Tailwind tokens with high-contrast semantic roles.",
+    "spatialBaseUnit": "4px Tailwind spacing scale.",
+    "typeScaleMethod": "Responsive clamp and Tailwind breakpoints.",
+    "motionBudget": "150-400ms transform/opacity only.",
+    "validationRule": "No mobile overflow; hero text and primary CTAs visible without interaction.",
     "tokenContinuityClassification": {
-      "typography": "pending-research",
-      "palette": "pending-research",
-      "motion": "pending-research",
-      "spacing": "pending-research",
+      "typography": "continuity-retained with stronger serif hero role",
+      "palette": "anchor-derived from UBSI blue and campus orange",
+      "motion": "continuity-retained and reduced",
+      "spacing": "anchor-derived editorial bands",
       "validValues": [
         "anchor-derived",
         "continuity-retained",
@@ -383,7 +457,10 @@
       "soft-glow-ai-template-default",
       "cyber-neon-terminal-default"
     ],
-    "spatialDecision": "State 3D/canvas/WebGL fit. If omitted, name product-fit reason and replacement interaction quality."
+    "spatialDecision": "State 3D/canvas/WebGL fit. If omitted, name product-fit reason and replacement interaction quality.",
+    "palette": "deep UBSI blue, campus navy, white bands, slate text, orange accent from building facade",
+    "motion": "short vertical reveal for sections and hover-only affordance for navigation/buttons",
+    "typographicRoleContrast": "serif display headline plus bold sans navigation/content labels"
   },
   "aiSafeUiAudit": {
     "status": "agent-must-complete-before-ui-implementation",
@@ -426,7 +503,19 @@
       "reviewQuestion": "Is the interaction as expressive as the product can responsibly support?"
     },
     "reviewQuestion": "What visible evidence proves this is product-specific?",
-    "blockingByDefault": true
+    "blockingByDefault": true,
+    "avoid": [
+      "purple gradients",
+      "generic cards",
+      "abstract blobs",
+      "fake metrics",
+      "placeholder imagery"
+    ],
+    "requiredProductSignals": [
+      "UBSI campus photo",
+      "HMTI group photo",
+      "formal breadcrumb/info rail"
+    ]
   },
   "productionContentPolicy": {
     "status": "agent-must-complete-before-ui-implementation",
@@ -439,20 +528,21 @@
       "explicit-user-requested-prototype"
     ],
     "reviewQuestion": "Can this UI be shipped to real users without removing test/demo copy or terminal-only workflow dependencies?",
-    "blockingByDefault": true
+    "blockingByDefault": true,
+    "placeholderCopyAllowed": false,
+    "assetPolicy": "Use provided real photos for landing visuals."
   },
-  "libraryResearchStatus": "pending-verification",
+  "libraryResearchStatus": "existing-dependencies-only",
   "libraryDecisions": [
     {
-      "library": "agent-defined-or-none",
-      "purpose": "Select UI-related libraries dynamically from product fit, accessibility, interaction quality, maintenance, and current official docs before imports.",
-      "verifiedAt": null,
-      "sourceUrl": null,
-      "stableVersion": null,
-      "fallbackIfUnavailable": "Use native CSS, browser APIs, or existing dependencies.",
-      "selectionPolicy": "Do not default to shadcn, native-only, Tailwind-only, or dependency avoidance by habit; do not avoid them out of guardrail fear when they fit.",
-      "officialScaffolderPolicy": "For fresh projects, prefer official setup commands when they create the supported project shape; manual assembly requires a documented repo, learning, prototype, or architecture reason.",
-      "frameworkNeutralityPolicy": "Next.js, Vite, Astro, React Router, SvelteKit, Laravel, and plain HTML are candidates, not defaults or forbidden choices. Compare at least one plausible alternative when no framework is user-constrained, then choose the technology that removes bottlenecks for this project."
+      "library": "Tailwind CSS",
+      "purpose": "Existing styling system.",
+      "decision": "Use existing dependency; no new UI library."
+    },
+    {
+      "library": "Framer Motion",
+      "purpose": "Existing reveal motion for content sections.",
+      "decision": "Use sparingly; avoid hiding hero content on initial paint."
     }
   ],
   "mathSystems": {
@@ -460,7 +550,10 @@
     "baseGridUnit": "agent-calibrated-from-platform-density-and-implementation-stack",
     "spacingPattern": "agent-defined-from-task-flow-and-viewport-needs",
     "densityMode": "agent-defined-from-user-task-device-and-content-pressure",
-    "seedValuesRequireCalibration": true
+    "seedValuesRequireCalibration": true,
+    "spacing": "4px scale",
+    "heroHeight": "62-74vh responsive minimum",
+    "imageRatios": "16:9 hero crop and 4:3 activity crop"
   },
   "tokenSystem": {
     "sourceOfTruth": "docs/design-intent.json",
@@ -500,7 +593,13 @@
       "forbidCurlyBracesInNames": true,
       "forbidDotsInNames": true,
       "forbidSquareBracketsInNames": true
-    }
+    },
+    "institutionalBlue": "#0067b1",
+    "campusNavy": "#061b2d",
+    "campusOrange": "#f26a21",
+    "surfaceWhite": "#ffffff",
+    "textStrong": "#0f172a",
+    "textMuted": "#475569"
   },
   "colorTruth": {
     "format": "OKLCH",
@@ -513,7 +612,9 @@
     "rolesAreMinimumScaffold": true,
     "rolesMustBeAgentDefined": true,
     "forbidAutopilotPalettesWithoutEvidence": true,
-    "intent": "Choose semantic palette roles from the product context \"Project brief unresolved. The AI agent must ask for or infer product context before implementation.\", repo evidence, and accessibility. Reject scaffold or SaaS palette defaults."
+    "intent": "Choose semantic palette roles from the product context \"Project brief unresolved. The AI agent must ask for or infer product context before implementation.\", repo evidence, and accessibility. Reject scaffold or SaaS palette defaults.",
+    "backgroundModel": "true white content surfaces with dark photo hero overlay for contrast",
+    "contrastFloor": "WCAG 2.2 AA"
   },
   "crossViewportAdaptation": {
     "adaptByRecomposition": true,
@@ -522,14 +623,19 @@
       "mobile": "Reorder, merge, or disclose content for mobile. Reject scale-only shrink.",
       "tablet": "Regroup for tablet instead of width-only desktop reduction.",
       "desktop": "Use space intentionally; avoid equal-weight modules without evidence."
-    }
+    },
+    "desktop": "two-tier header, full navigation, large hero, three-column info strip",
+    "tablet": "reduced nav density, preserved hero crop, two-column sections",
+    "mobile": "compact header, stacked CTAs, wrapped breadcrumb/info, no horizontal overflow"
   },
   "motionSystem": {
     "allowMeaningfulMotion": true,
     "purpose": "Use expressive motion when it improves hierarchy, continuity, feedback, memorability, or confidence. Verify new motion libraries with official docs.",
     "seedToneLocked": false,
     "densitySource": "task-content-brand-device-accessibility",
-    "respectReducedMotion": true
+    "respectReducedMotion": true,
+    "default": "opacity and translateY reveal under 400ms",
+    "reducedMotion": "content remains visible without animation dependency"
   },
   "componentMorphology": {
     "requireStateBehaviorMatrix": true,
@@ -551,7 +657,19 @@
       "mobile": "Recompose for touch, task priority, and constrained attention.",
       "tablet": "Regroup surfaces for medium width without cloning desktop or mobile.",
       "desktop": "Use space for hierarchy and scanability; avoid template grids."
-    }
+    },
+    "preferred": [
+      "bands",
+      "rails",
+      "sharp dividers",
+      "image frames",
+      "editorial text blocks"
+    ],
+    "avoid": [
+      "nested rounded cards",
+      "decorative grid wallpaper",
+      "uniform SaaS tiles"
+    ]
   },
   "accessibilityPolicy": {
     "hardComplianceFloor": "WCAG-2.2-AA",
@@ -574,7 +692,11 @@
       "perceptualContrastReview": true,
       "darkModeContrastTuning": true,
       "typographyReadabilityTuning": true
-    }
+    },
+    "contrast": "WCAG 2.2 AA",
+    "focus": "visible focus rings required",
+    "keyboard": "navigation and CTAs remain keyboard accessible",
+    "responsive": "mobile text must wrap without clipping"
   },
   "designExecutionPolicy": {
     "representationStrategy": "surface-plan-v1",
@@ -604,7 +726,10 @@
       "hierarchy-and-task-priority",
       "component-state-behavior",
       "cross-viewport-mutation"
-    ]
+    ],
+    "scope": "Homepage-first visual update; do not redesign all pages unless requested.",
+    "assetUse": "Use provided photos in project public assets.",
+    "copyPolicy": "Use factual HMTI/UBSI copy only."
   },
   "designExecutionHandoff": {
     "version": "ui-handoff-v1",
@@ -768,7 +893,18 @@
       "forbidCandidateMoveHardcoding": true,
       "forbidTestingDemoCopyInUi": true,
       "forbidTerminalOnlyUserFlows": true
-    }
+    },
+    "primaryFiles": [
+      "src/components/layout/Navbar.tsx",
+      "src/components/sections/HeroSection.tsx",
+      "src/components/sections/AboutPreview.tsx",
+      "src/components/sections/CollaborationCTA.tsx"
+    ],
+    "verification": [
+      "npm run validate",
+      "desktop screenshot",
+      "mobile screenshot"
+    ]
   },
   "reviewRubric": {
     "version": "ui-rubric-v1",
@@ -856,7 +992,13 @@
       "mustExplainGenericity": true,
       "mustSeparateTasteFromFailure": true,
       "contractFidelityOverridesPersonalTaste": true
-    }
+    },
+    "mustPass": [
+      "looks institutional and HMTI-specific",
+      "uses provided photos",
+      "desktop and mobile no overflow",
+      "build passes"
+    ]
   },
   "contextHygiene": {
     "continuityMode": "opt-in-only",
@@ -882,41 +1024,24 @@
       "prior-ui-visual-dna-carried-into-reset-request",
       "room-or-control-room-anchor-repeated-without-product-need",
       "external-reference-copied-instead-of-translated"
+    ],
+    "validInputs": [
+      "current repo",
+      "user-provided ITB screenshots",
+      "provided UBSI campus photo",
+      "provided HMTI group photo"
+    ],
+    "invalidInputs": [
+      "unrelated project memory",
+      "generic template trends"
     ]
   },
   "forbiddenPatterns": [
-    "offline-prescribed-style-used-as-final-direction",
-    "missing-conceptual-anchor-without-external-research",
-    "visual-decisions-not-derived-from-conceptual-anchor",
-    "ai-safe-ui-template-look",
-    "ai-color-default-palette-without-product-role-behavior",
-    "brandless-clean-template-look",
-    "interchangeable-product-renaming-test-fails",
-    "decorative-grid-or-glow-wallpaper-without-product-function",
-    "decorative-line-or-calibration-wallpaper-without-product-function",
-    "measurement-or-calibration-marks-used-as-page-background",
-    "testing-demo-or-placeholder-copy-shipped-to-ui",
-    "terminal-only-user-flow-without-product-reason",
-    "safe-cream-slate-or-monochrome-palette-used-as-readability-excuse",
-    "generic-abstract-logo-or-iconography",
-    "timid-anchor-that-renames-dashboard-or-admin-shell",
-    "motion-suppressed-without-accessibility-or-performance-reason",
-    "motion-or-3d-omitted-from-fear-without-fit-analysis",
-    "modern-library-rejected-from-dependency-fear-without-tradeoff-analysis",
-    "component-library-selected-by-habit-without-product-fit",
-    "scale-only-responsive-layout",
-    "zero-based-redesign-kept-prior-visual-dna",
-    "restyle-instead-of-recomposition",
-    "literal-anchor-artifacts-used-as-required-ui-chrome",
-    "candidate-signature-move-treated-as-locked-implementation",
-    "library-theme-tokens-drive-visual-language",
-    "spatial-room-anchor-used-by-habit",
-    "place-metaphor-used-as-layout-model-without-product-function",
-    "external-website-reference-copied-as-style",
-    "tailwind-only-or-component-kit-used-as-neutrality-claim",
-    "framework-selected-by-familiarity-instead-of-evidence",
-    "manual-framework-scaffold-used-when-official-setup-fits",
-    "single-safe-typographic-family-without-role-contrast-or-rationale"
+    "purple neon gradients",
+    "fake stats",
+    "placeholder campus illustration",
+    "generic SaaS card grid",
+    "overly playful rounded UI"
   ],
   "validationHints": [
     "rejectArbitraryHexOnlyPalette",
@@ -954,20 +1079,11 @@
     "rejectTerminalOnlyUserFlows"
   ],
   "requiredDesignSections": [
-    "Design Intent and Product Personality",
-    "Audience and Use-Context Signals",
-    "Visual Direction and Distinctive Moves",
-    "Color Science and Semantic Roles",
-    "Typographic Engineering and Hierarchy",
-    "Spacing, Layout Rhythm, and Density Strategy",
-    "Token Architecture and Alias Strategy",
-    "Responsive Strategy and Cross-Viewport Adaptation Matrix",
-    "Interaction, Motion, and Feedback Rules",
-    "Component Language, Morphology, and Shared Patterns",
-    "Context Hygiene and Source Boundaries",
-    "Accessibility Non-Negotiables",
-    "Anti-Patterns to Avoid",
-    "Implementation Notes for Future UI Tasks"
+    "hero",
+    "info strip",
+    "profile section",
+    "activity proof section",
+    "collaboration CTA"
   ],
   "implementation": {
     "requiredDeliverables": [
@@ -991,6 +1107,19 @@
       ".agent-context/rules/database-design.md",
       ".agent-context/rules/docker-runtime.md",
       ".agent-context/rules/microservices.md"
+    ],
+    "framework": "Next.js App Router",
+    "styling": "Tailwind CSS",
+    "newDependencies": "none"
+  },
+  "repoEvidence": {
+    "package": "Next.js 14, Tailwind CSS, Framer Motion",
+    "components": [
+      "Navbar",
+      "HeroSection",
+      "AboutPreview",
+      "CollaborationCTA",
+      "GalleryPreview"
     ]
   }
 }

@@ -14,7 +14,7 @@ const iconMap: Record<string, React.ElementType> = {
 
 export function AboutPreview() {
   return (
-    <section className="overflow-hidden bg-white py-16 md:py-24">
+    <section id="profil-organisasi" className="overflow-hidden bg-white py-16 md:py-24">
       <div className="container px-4 md:px-6">
         <div className="grid gap-12 lg:grid-cols-[1.55fr_0.95fr] lg:items-start">
           <motion.div
@@ -86,42 +86,60 @@ export function AboutPreview() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="border-t-4 border-blue-600 bg-slate-50 p-6 shadow-sm"
+            className="bg-slate-50 shadow-sm"
           >
-            <div className="mb-6 flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center bg-blue-600 text-white">
-                <Users className="h-5 w-5" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-foreground">Nilai HMTI</h3>
-                <p className="text-sm text-muted-foreground">
-                  Prinsip yang menjaga arah kegiatan organisasi.
+            <div className="relative aspect-[4/3] overflow-hidden border-t-4 border-blue-600">
+              <img
+                src="/images/activities/hmti-ldk-group.jpeg"
+                alt="Anggota HMTI UBSI Margonda dalam kegiatan LDK"
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent p-5 text-white">
+                <p className="text-xs font-semibold uppercase tracking-wide text-white/75">
+                  Dokumentasi HMTI
                 </p>
+                <p className="mt-1 text-lg font-bold">Kegiatan kebersamaan dan LDK</p>
               </div>
             </div>
 
-            <div className="divide-y">
-              {visionMissionData.values.map((value, index) => {
-                const Icon = iconMap[value.icon] || Heart;
-                return (
-                  <motion.div
-                    key={value.id}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.35, delay: index * 0.08 }}
-                    className="flex gap-4 py-4"
-                  >
-                    <Icon className="mt-1 h-5 w-5 shrink-0 text-blue-600" />
-                    <div>
-                      <h4 className="font-semibold text-foreground">{value.title}</h4>
-                      <p className="text-sm leading-6 text-muted-foreground">
-                        {value.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                );
-              })}
+            <div className="p-6">
+              <div className="mb-6 flex items-center gap-3">
+                <div className="flex h-11 w-11 items-center justify-center bg-blue-600 text-white">
+                  <Users className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-foreground">Nilai HMTI</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Prinsip yang menjaga arah kegiatan organisasi.
+                  </p>
+                </div>
+              </div>
+
+              <div className="divide-y">
+                {visionMissionData.values.map((value, index) => {
+                  const Icon = iconMap[value.icon] || Heart;
+                  return (
+                    <motion.div
+                      key={value.id}
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.35, delay: index * 0.08 }}
+                      className="flex gap-4 py-4"
+                    >
+                      <Icon className="mt-1 h-5 w-5 shrink-0 text-blue-600" />
+                      <div>
+                        <h4 className="font-semibold text-foreground">{value.title}</h4>
+                        <p className="text-sm leading-6 text-muted-foreground">
+                          {value.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
           </motion.div>
         </div>

@@ -9,11 +9,18 @@ export function HeroSection() {
   return (
     <section className="relative overflow-x-hidden">
       <div
-        className="relative flex min-h-[62vh] items-center justify-center overflow-hidden bg-blue-950 bg-cover bg-center md:min-h-[70vh]"
-        style={{ backgroundImage: "url('/images/hero/hmti-campus-hero.png')" }}
+        className="relative flex min-h-[66vh] items-center justify-center overflow-hidden bg-blue-950 md:min-h-[74vh]"
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/45 to-black/65" />
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/65 to-transparent" />
+        <img
+          src="/images/hero/ubsi-campus-margonda.webp"
+          alt="Gedung Universitas Bina Sarana Informatika Margonda"
+          loading="eager"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#061b2d]/55 via-[#061b2d]/65 to-[#020a13]/88" />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/35 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/75 to-transparent" />
 
         <div className="container relative z-10 w-full max-w-full px-4 text-center text-white md:px-6">
           <h1 className="mx-auto max-w-[18rem] text-balance break-words font-serif text-4xl font-bold leading-[0.95] sm:max-w-[34rem] sm:text-5xl md:max-w-5xl md:text-6xl lg:text-7xl">
