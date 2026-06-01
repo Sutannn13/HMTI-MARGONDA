@@ -11,22 +11,19 @@ export const siteConfig = {
     'organisasi mahasiswa',
     'teknologi informasi',
     'mahasiswa TI',
+    'kampus UBSI',
+    'organisasi mahasiswa TI',
   ],
   social: {
     instagram: '@hmtiubsimargonda',
-    // Ganti dengan akun Instagram resmi HMTI jika sudah ada
     email: 'hmtiubsimargonda@example.com',
-    // Ganti dengan email resmi HMTI jika sudah ada
     location: 'Kampus UBSI Margonda, Jakarta',
     address: 'Jl. Raya Margonda No. 123, Pondok Cina, Beji, Kota Depok, Jawa Barat 16424',
-    // Ganti dengan alamat resmi kampus UBSI Margonda jika berbeda
   },
   contact: {
     whatsapp: '',
-    // Tambahkan nomor WhatsApp resmi HMTI jika ada
   },
   partners: [],
-  // Daftar partner bisa ditambahkan di sini
 };
 
 export const metaConfig = {
@@ -36,4 +33,6 @@ export const metaConfig = {
   },
   description: siteConfig.description,
   keywords: siteConfig.keywords,
+  siteUrl: 'https://hmtiubsimargonda.vercel.app',
+  ogImage: '/images/og-image.png',
 };

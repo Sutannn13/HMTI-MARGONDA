@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { programsData } from '@/data/programs';
-import { ArrowRight, Code, Briefcase, Heart, Users, Palette, Camera, Cpu, Trophy } from 'lucide-react';
+import { ArrowRight, Code, Briefcase, Heart, Users, Palette, Camera, Cpu, Trophy, MapPin, Calendar } from 'lucide-react';
 
 const iconMap: Record<string, React.ElementType> = {
   Code,
@@ -17,25 +17,19 @@ const iconMap: Record<string, React.ElementType> = {
   Trophy,
 };
 
-const statusColors = {
-  'akan-datang': 'bg-yellow-100 text-yellow-700',
-  'berlangsung': 'bg-green-100 text-green-700',
-  'terlaksana': 'bg-blue-100 text-blue-700',
+const statusConfig = {
+  'akan-datang': { bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200', label: 'Akan Datang' },
+  'berlangsung': { bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200', label: 'Berlangsung' },
+  'terlaksana': { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200', label: 'Terlaksana' },
 };
 
-const statusLabels = {
-  'akan-datang': 'Akan Datang',
-  'berlangsung': 'Berlangsung',
-  'terlaksana': 'Terlaksana',
-};
-
-const categoryColors = {
-  akademik: 'border-blue-200 bg-blue-50',
-  sosial: 'border-green-200 bg-green-50',
-  teknologi: 'border-purple-200 bg-purple-50',
-  internal: 'border-orange-200 bg-orange-50',
-  eksternal: 'border-pink-200 bg-pink-50',
-  unggulan: 'border-yellow-200 bg-yellow-50',
+const categoryConfig = {
+  akademik: { bg: 'bg-blue-100', text: 'text-blue-600', border: 'border-blue-200' },
+  sosial: { bg: 'bg-emerald-100', text: 'text-emerald-600', border: 'border-emerald-200' },
+  teknologi: { bg: 'bg-purple-100', text: 'text-purple-600', border: 'border-purple-200' },
+  internal: { bg: 'bg-orange-100', text: 'text-orange-600', border: 'border-orange-200' },
+  eksternal: { bg: 'bg-pink-100', text: 'text-pink-600', border: 'border-pink-200' },
+  unggulan: { bg: 'bg-yellow-100', text: 'text-yellow-600', border: 'border-yellow-200' },
 };
 
 export function ProgramPreview() {
@@ -53,6 +47,9 @@ export function ProgramPreview() {
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           {featuredPrograms.map((program, index) => {
             const Icon = iconMap[program.icon] || Code;
+            const status = statusConfig[program.status];
+            const category = categoryConfig[program.category];
+
             return (
               <motion.div
                 key={program.id}
@@ -60,29 +57,64 @@ export function ProgramPreview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="glass rounded-xl p-6 card-hover"
+                className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:border-blue-200/80 hover:shadow-md hover:-translate-y-1"
               >
+                {/* Decorative corner */}
+                <div className="absolute top-0 right-0 h-24 w-24 -translate-y-8 translate-x-8 rotate-45 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
                 <div className="flex items-start gap-4">
-                  <div className={`w-14 h-14 rounded-xl flex items-center justify-center border-2 ${categoryColors[program.category]?.split(' ')[0]}`}>
-                    <Icon className="w-7 h-7 text-blue-500" />
+                  {/* Icon */}
+                  <div className={`relative flex h-14 w-14 shrink-0 items-center justify-center rounded-xl ${category.bg} ${category.text} border ${category.border} transition-transform duration-300 group-hover:scale-105`}>
+                    <Icon className="h-7 w-7" />
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className={`text-xs px-2 py-1 rounded-full ${statusColors[program.status]}`}>
-                        {statusLabels[program.status]}
+
+                  <div className="flex-1 min-w-0">
+                    {/* Tags Row */}
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
+                      <span className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-medium ${status.bg} ${status.text} ${status.border}`}>
+                        {status.label}
                       </span>
-                      <span className="text-xs text-muted-foreground capitalize">
+                      <span className="text-xs text-slate-500 capitalize">
                         {program.category}
                       </span>
                     </div>
-                    <h3 className="font-semibold text-foreground mb-2">{program.title}</h3>
-                    <p className="text-sm text-muted-foreground mb-3">
+
+                    {/* Title */}
+                    <h3 className="font-semibold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors">
+                      {program.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-sm text-slate-600 mb-3 line-clamp-2">
                       {program.description}
                     </p>
+
+                    {/* Meta */}
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500">
+                      {program.location && (
+                        <span className="inline-flex items-center gap-1">
+                          <MapPin className="h-3 w-3" />
+                          {program.location}
+                        </span>
+                      )}
+                      {program.date && (
+                        <span className="inline-flex items-center gap-1">
+                          <Calendar className="h-3 w-3" />
+                          {new Date(program.date).toLocaleDateString('id-ID', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric',
+                          })}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Impact */}
                     {program.impact && (
-                      <p className="text-xs text-primary font-medium">
-                        Impact: {program.impact}
-                      </p>
+                      <div className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700">
+                        <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                        {program.impact}
+                      </div>
                     )}
                   </div>
                 </div>
@@ -100,10 +132,10 @@ export function ProgramPreview() {
         >
           <Link
             href="/program-kerja"
-            className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+            className="inline-flex items-center gap-2 text-blue-600 font-medium hover:text-blue-800 transition-colors group"
           >
             Lihat Semua Program Kerja
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </motion.div>
       </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -15,11 +15,11 @@ import {
 } from '@/components/ui/select';
 import { isSupabaseConfigured, submitCollaboration } from '@/lib/supabase/client';
 import { cn } from '@/lib/utils';
-import { Loader2, CheckCircle, AlertCircle, Send } from 'lucide-react';
+import { Loader2, CheckCircle, AlertCircle, Send, Sparkles, MessageSquare, Mail, User, Building } from 'lucide-react';
 
 const collaborationTypes = [
-  { value: 'seminar', label: 'Seminar' },
-  { value: 'workshop', label: 'Workshop' },
+  { value: 'seminar', label: 'Seminar & Talkshow' },
+  { value: 'workshop', label: 'Workshop & Pelatihan' },
   { value: 'sponsorship', label: 'Sponsorship' },
   { value: 'media-partner', label: 'Media Partner' },
   { value: 'community-event', label: 'Community Event' },
@@ -83,7 +83,7 @@ export function CollaborationForm() {
     if (!formData.message.trim()) {
       newErrors.message = 'Pesan/proposal wajib diisi';
     } else if (formData.message.trim().length < 20) {
-      newErrors.message = 'Pesan minimal 20 karakter';
+      newErrors.message = 'Minimal 20 karakter untuk deskripsi yang jelas';
     }
 
     setErrors(newErrors);
@@ -144,17 +144,26 @@ export function CollaborationForm() {
 
   if (!isSupabaseConfigured) {
     return (
-      <div className="glass rounded-2xl p-8 text-center">
-        <div className="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center mx-auto mb-4">
-          <AlertCircle className="w-8 h-8 text-yellow-600" />
+      <div className="relative overflow-hidden rounded-2xl border border-amber-200/50 bg-gradient-to-br from-amber-50/50 to-orange-50/50 p-8 text-center shadow-sm">
+        {/* Decorative */}
+        <div className="absolute top-0 right-0 h-24 w-24 -translate-y-8 translate-x-8 rounded-full bg-amber-100/50 blur-2xl" />
+
+        <div className="relative">
+          <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-200/50 bg-white shadow-sm">
+            <AlertCircle className="h-8 w-8 text-amber-500" />
+          </div>
+          <h3 className="mb-3 text-xl font-bold text-slate-900">
+            Konfigurasi Belum Aktif
+          </h3>
+          <p className="mx-auto max-w-sm text-sm text-slate-600">
+            Form kolaborasi saat ini dalam mode pengembangan. Hubungi administrator
+            untuk mengaktifkan fitur submission.
+          </p>
+          <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-amber-100 px-4 py-2 text-xs font-medium text-amber-700">
+            <MessageSquare className="h-3.5 w-3.5" />
+            Demo Mode - Data tidak akan tersimpan
+          </div>
         </div>
-        <h3 className="text-lg font-semibold text-foreground mb-2">
-          Konfigurasi Kolaborasi Belum Aktif
-        </h3>
-        <p className="text-muted-foreground">
-          Form kolaborasi saat ini tidak dapat digunakan karena konfigurasi Supabase
-          belum diatur. Silakan hubungi administrator untuk mengaktifkan fitur ini.
-        </p>
       </div>
     );
   }
@@ -165,168 +174,274 @@ export function CollaborationForm() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="glass rounded-2xl p-6 md:p-8"
+      className="relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm md:p-8"
     >
-      {submitStatus === 'success' ? (
-        <div className="text-center py-12">
+      {/* Decorative elements */}
+      <div className="absolute top-0 right-0 h-32 w-32 -translate-y-16 translate-x-16 rounded-full bg-blue-50/50 blur-2xl" />
+      <div className="absolute bottom-0 left-0 h-24 w-24 translate-y-12 -translate-x-12 rounded-full bg-blue-100/30 blur-2xl" />
+
+      <AnimatePresence mode="wait">
+        {submitStatus === 'success' ? (
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6"
+            key="success"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.3 }}
+            className="relative text-center py-12"
           >
-            <CheckCircle className="w-10 h-10 text-green-600" />
-          </motion.div>
-          <h3 className="text-xl font-semibold text-foreground mb-2">
-            Pengajuan Berhasil Terkirim!
-          </h3>
-          <p className="text-muted-foreground mb-6">
-            Terima kasih telah mengajukan kolaborasi dengan HMTI UBSI Margonda.
-            Tim kami akan segera menghubungi Anda.
-          </p>
-          <Button
-            variant="outline"
-            onClick={() => setSubmitStatus('idle')}
-          >
-            Ajukan Kolaborasi Lainnya
-          </Button>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {submitStatus === 'error' && (
-            <div className="p-4 rounded-lg bg-red-50 border border-red-200 flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-sm text-red-800 font-medium">Gagal mengirim</p>
-                <p className="text-sm text-red-600">{errorMessage}</p>
+            {/* Success Icon */}
+            <div className="relative mx-auto mb-6 inline-flex">
+              <div className="absolute inset-0 rounded-full bg-emerald-100 blur-xl" />
+              <div className="relative flex h-20 w-20 items-center justify-center rounded-full border-2 border-emerald-200 bg-emerald-50">
+                <CheckCircle className="h-10 w-10 text-emerald-500" />
               </div>
             </div>
-          )}
 
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">
-                Nama Lengkap <span className="text-red-500">*</span>
-              </Label>
-              <Input
-                id="name"
-                placeholder="Masukkan nama lengkap"
-                value={formData.name}
-                onChange={(e) => handleChange('name', e.target.value)}
-                className={cn(errors.name && 'border-red-500')}
-              />
-              {errors.name && (
-                <p className="text-xs text-red-500">{errors.name}</p>
-              )}
-            </div>
+            <h3 className="mb-3 text-2xl font-bold text-slate-900">
+              Pengajuan Terkirim!
+            </h3>
+            <p className="mx-auto mb-8 max-w-sm text-slate-600">
+              Terima kasih telah mengajukan kolaborasi dengan HMTI UBSI Margonda.
+              Tim kami akan meninjau proposal Anda dan menghubungi via email.
+            </p>
 
-            <div className="space-y-2">
-              <Label htmlFor="institution">
-                Instansi/Brand/Organisasi <span className="text-red-500">*</span>
-              </Label>
-              <Input
-                id="institution"
-                placeholder="Masukkan nama instansi"
-                value={formData.institution}
-                onChange={(e) => handleChange('institution', e.target.value)}
-                className={cn(errors.institution && 'border-red-500')}
-              />
-              {errors.institution && (
-                <p className="text-xs text-red-500">{errors.institution}</p>
-              )}
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">
-                Email <span className="text-red-500">*</span>
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="email@contoh.com"
-                value={formData.email}
-                onChange={(e) => handleChange('email', e.target.value)}
-                className={cn(errors.email && 'border-red-500')}
-              />
-              {errors.email && (
-                <p className="text-xs text-red-500">{errors.email}</p>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="whatsapp">Nomor WhatsApp (opsional)</Label>
-              <Input
-                id="whatsapp"
-                type="tel"
-                placeholder="08xxxxxxxxxx"
-                value={formData.whatsapp}
-                onChange={(e) => handleChange('whatsapp', e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="collaboration_type">
-              Jenis Kolaborasi <span className="text-red-500">*</span>
-            </Label>
-            <Select
-              value={formData.collaboration_type}
-              onValueChange={(value) => handleChange('collaboration_type', value)}
+            <Button
+              variant="outline"
+              onClick={() => setSubmitStatus('idle')}
+              className="border-slate-300 hover:bg-slate-50"
             >
-              <SelectTrigger className={cn(errors.collaboration_type && 'border-red-500')}>
-                <SelectValue placeholder="Pilih jenis kolaborasi" />
-              </SelectTrigger>
-              <SelectContent>
-                {collaborationTypes.map((type) => (
-                  <SelectItem key={type.value} value={type.value}>
-                    {type.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {errors.collaboration_type && (
-              <p className="text-xs text-red-500">{errors.collaboration_type}</p>
-            )}
-          </div>
+              Ajukan Kolaborasi Lainnya
+            </Button>
+          </motion.div>
+        ) : (
+          <motion.div key="form">
+            {/* Form Header */}
+            <div className="mb-8 text-center">
+              <div className="mx-auto mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
+                <Send className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-xl font-bold text-slate-900">
+                Form Pengajuan Kolaborasi
+              </h3>
+              <p className="text-sm text-slate-500">
+                Isi form di bawah untuk mengajukan kerja sama dengan HMTI
+              </p>
+            </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="message">
-              Pesan / Proposal <span className="text-red-500">*</span>
-            </Label>
-            <Textarea
-              id="message"
-              placeholder="Jelaskan rencana kerja sama Anda..."
-              rows={5}
-              value={formData.message}
-              onChange={(e) => handleChange('message', e.target.value)}
-              className={cn(errors.message && 'border-red-500')}
-            />
-            {errors.message && (
-              <p className="text-xs text-red-500">{errors.message}</p>
-            )}
-          </div>
+            <form onSubmit={handleSubmit} className="relative space-y-5">
+              {/* Error Alert */}
+              {submitStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="rounded-xl border border-red-200/50 bg-red-50/80 p-4 backdrop-blur-sm"
+                >
+                  <div className="flex items-start gap-3">
+                    <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-500" />
+                    <div>
+                      <p className="font-medium text-red-800">Gagal mengirim</p>
+                      <p className="text-sm text-red-600">{errorMessage}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
 
-          <Button
-            type="submit"
-            size="lg"
-            className="w-full"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Mengirim...
-              </>
-            ) : (
-              <>
-                <Send className="mr-2 h-4 w-4" />
-                Kirim Pengajuan
-              </>
-            )}
-          </Button>
-        </form>
-      )}
+              {/* Name & Institution Row */}
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="name" className="text-sm font-medium text-slate-700">
+                    <span className="inline-flex items-center gap-1.5">
+                      <User className="h-3.5 w-3.5 text-slate-400" />
+                      Nama Lengkap
+                      <span className="text-red-500">*</span>
+                    </span>
+                  </Label>
+                  <Input
+                    id="name"
+                    placeholder="Masukkan nama lengkap Anda"
+                    value={formData.name}
+                    onChange={(e) => handleChange('name', e.target.value)}
+                    className={cn(
+                      'border-slate-200 bg-white/80 transition-all focus:bg-white',
+                      errors.name && 'border-red-400 bg-red-50/50 focus:border-red-400 focus:bg-red-50/50'
+                    )}
+                    disabled={isSubmitting}
+                  />
+                  {errors.name && (
+                    <p className="flex items-center gap-1 text-xs text-red-500">
+                      {errors.name}
+                    </p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="institution" className="text-sm font-medium text-slate-700">
+                    <span className="inline-flex items-center gap-1.5">
+                      <Building className="h-3.5 w-3.5 text-slate-400" />
+                      Instansi
+                      <span className="text-red-500">*</span>
+                    </span>
+                  </Label>
+                  <Input
+                    id="institution"
+                    placeholder="Nama perusahaan/brand/institusi"
+                    value={formData.institution}
+                    onChange={(e) => handleChange('institution', e.target.value)}
+                    className={cn(
+                      'border-slate-200 bg-white/80 transition-all focus:bg-white',
+                      errors.institution && 'border-red-400 bg-red-50/50 focus:border-red-400 focus:bg-red-50/50'
+                    )}
+                    disabled={isSubmitting}
+                  />
+                  {errors.institution && (
+                    <p className="flex items-center gap-1 text-xs text-red-500">
+                      {errors.institution}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              {/* Email & WhatsApp Row */}
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-sm font-medium text-slate-700">
+                    <span className="inline-flex items-center gap-1.5">
+                      <Mail className="h-3.5 w-3.5 text-slate-400" />
+                      Email
+                      <span className="text-red-500">*</span>
+                    </span>
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="email@perusahaan.com"
+                    value={formData.email}
+                    onChange={(e) => handleChange('email', e.target.value)}
+                    className={cn(
+                      'border-slate-200 bg-white/80 transition-all focus:bg-white',
+                      errors.email && 'border-red-400 bg-red-50/50 focus:border-red-400 focus:bg-red-50/50'
+                    )}
+                    disabled={isSubmitting}
+                  />
+                  {errors.email && (
+                    <p className="flex items-center gap-1 text-xs text-red-500">
+                      {errors.email}
+                    </p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="whatsapp" className="text-sm font-medium text-slate-700">
+                    WhatsApp (opsional)
+                  </Label>
+                  <Input
+                    id="whatsapp"
+                    type="tel"
+                    placeholder="08xxxxxxxxxx"
+                    value={formData.whatsapp}
+                    onChange={(e) => handleChange('whatsapp', e.target.value)}
+                    className="border-slate-200 bg-white/80 transition-all focus:bg-white"
+                    disabled={isSubmitting}
+                  />
+                </div>
+              </div>
+
+              {/* Collaboration Type */}
+              <div className="space-y-2">
+                <Label htmlFor="collaboration_type" className="text-sm font-medium text-slate-700">
+                  Jenis Kolaborasi <span className="text-red-500">*</span>
+                </Label>
+                <Select
+                  value={formData.collaboration_type}
+                  onValueChange={(value) => handleChange('collaboration_type', value)}
+                  disabled={isSubmitting}
+                >
+                  <SelectTrigger className={cn(
+                    'border-slate-200 bg-white/80 transition-all focus:bg-white',
+                    errors.collaboration_type && 'border-red-400 bg-red-50/50'
+                  )}>
+                    <SelectValue placeholder="Pilih jenis kolaborasi" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white">
+                    {collaborationTypes.map((type) => (
+                      <SelectItem key={type.value} value={type.value}>
+                        {type.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {errors.collaboration_type && (
+                  <p className="flex items-center gap-1 text-xs text-red-500">
+                    {errors.collaboration_type}
+                  </p>
+                )}
+              </div>
+
+              {/* Message */}
+              <div className="space-y-2">
+                <Label htmlFor="message" className="text-sm font-medium text-slate-700">
+                  Pesan / Proposal <span className="text-red-500">*</span>
+                </Label>
+                <Textarea
+                  id="message"
+                  placeholder="Jelaskan rencana kerja sama Anda: jenis kegiatan, target peserta, timeline, dan expected outcome..."
+                  rows={5}
+                  value={formData.message}
+                  onChange={(e) => handleChange('message', e.target.value)}
+                  className={cn(
+                    'resize-none border-slate-200 bg-white/80 transition-all focus:bg-white',
+                    errors.message && 'border-red-400 bg-red-50/50 focus:border-red-400 focus:bg-red-50/50'
+                  )}
+                  disabled={isSubmitting}
+                />
+                <div className="flex items-center justify-between">
+                  {errors.message ? (
+                    <p className="flex items-center gap-1 text-xs text-red-500">
+                      {errors.message}
+                    </p>
+                  ) : (
+                    <span className="text-xs text-slate-400">Minimal 20 karakter</span>
+                  )}
+                  <span className="text-xs text-slate-400">
+                    {formData.message.length} karakter
+                  </span>
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <Button
+                type="submit"
+                size="lg"
+                className={cn(
+                  'w-full transition-all',
+                  isSubmitting
+                    ? 'bg-blue-400 cursor-not-allowed'
+                    : 'bg-blue-600 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/20'
+                )}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Mengirim...
+                  </>
+                ) : (
+                  <>
+                    <Send className="mr-2 h-4 w-4" />
+                    Kirim Pengajuan
+                  </>
+                )}
+              </Button>
+
+              {/* Privacy Note */}
+              <p className="text-center text-xs text-slate-400">
+                Data Anda akan digunakan hanya untuk keperluan pengajuan kolaborasi
+              </p>
+            </form>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

@@ -63,7 +63,7 @@ html {
 
 /* Selection */
 ::selection {
-  background: hsl(var(--primary) / 0.2);
+  background: hsl(var(--primary) / 0.15);
   color: hsl(var(--primary));
 }
 
@@ -96,7 +96,7 @@ html {
 
 /* Section background pattern */
 .pattern-dots {
-  background-image: radial-gradient(circle, hsl(var(--muted-foreground) / 0.15) 1px, transparent 1px);
+  background-image: radial-gradient(circle, hsl(var(--muted-foreground) / 0.12) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -133,14 +133,14 @@ html {
   }
 }
 
-/* Card hover effect */
+/* Card hover effect - enhanced */
 .card-hover {
-  transition: all 0.3s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.12);
 }
 
 /* Button press effect */
@@ -178,5 +178,53 @@ html {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Card border hover */
+.card-border-hover {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-border-hover:hover {
+  border-color: hsl(210 100% 50% / 0.3);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.08);
+}
+
+/* Link underline animation */
+.link-hover {
+  position: relative;
+}
+
+.link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: hsl(var(--primary));
+  transition: width 0.2s ease;
+}
+
+.link-hover:hover::after {
+  width: 100%;
+}
+
+/* Subtle ring focus */
+.ring-focus:focus-visible {
+  ring: 2px;
+  ring-color: hsl(var(--primary) / 0.4);
+  ring-offset: 2px;
+}
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
