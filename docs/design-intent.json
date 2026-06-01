@@ -26,9 +26,10 @@
     "selectionAuthority": "agent-llm-after-current-context-repo-evidence-and-live-official-docs",
     "trendStance": "current-context-first-not-offline-preset-first",
     "distinctiveMoves": [
-      "Campus building photo anchors the first viewport.",
+      "4K campus building image anchors the first viewport.",
+      "Official HMTI logo replaces the temporary letter mark in the navigation.",
       "HMTI group photo anchors the profile section as social proof.",
-      "Breadcrumb and info rail mirror formal faculty-site navigation without copying brand assets."
+      "Breadcrumb and info rail keep formal faculty-site navigation without duplicating footer links."
     ],
     "copiedReferenceAllowed": false,
     "summary": "Photo-led, university-style, blue institutional navigation, serif hero headline, strict white content bands, minimal ornament."
@@ -312,7 +313,7 @@
   },
   "researchDossier": {
     "metadata": {
-      "researchVerifiedAt": "2026-05-31",
+      "researchVerifiedAt": "2026-06-01",
       "freshnessWindowDays": 90,
       "freshnessRule": "Research dossier is stale when researchVerifiedAt is null or older than freshnessWindowDays. Stale dossiers must run research-design.md before UI implementation. User-explicit redesign requests bypass freshness and force fresh research regardless of age.",
       "antiRepeatLedger": {
@@ -338,7 +339,7 @@
     },
     "sourceFreshness": {
       "status": "agent-must-complete-before-ui-implementation",
-      "freshnessAnchorDate": "2026-05-31",
+      "freshnessAnchorDate": "2026-06-01",
       "rollingLookbackMonths": 24,
       "officialDocsRequiredFor": [
         "new UI libraries",
@@ -365,25 +366,25 @@
       "evidenceTable": [],
       "sourceFreshnessStatus": "user-provided-and-repo-evidence",
       "oldSourcePolicy": "No trend freshness claims made.",
-      "userConceptAdaptation": "ITB reference used as hierarchy and professionalism signal only.",
+      "userConceptAdaptation": "ITB reference used as hierarchy and professionalism signal only; duplicate top utility links removed per user direction.",
       "disagreements": []
     },
     "evidenceTable": [
       {
-        "claim": "Homepage should use an institutional two-tier header and photo-led hero.",
+        "claim": "Homepage should use one decisive blue header with official logo and a photo-led hero.",
         "sourceUrl": "user-provided screenshots and request",
         "sourceType": "user-provided",
-        "publishedOrUpdatedAt": "2026-05-31",
-        "fetchedAt": "2026-05-31",
+        "publishedOrUpdatedAt": "2026-06-01",
+        "fetchedAt": "2026-06-01",
         "confidence": "high",
         "decisionImpact": "Header and hero composition."
       },
       {
-        "claim": "Use real UBSI campus and HMTI group photos.",
+        "claim": "Use the 4K UBSI campus image and HMTI group photo.",
         "sourceUrl": "local user downloads",
         "sourceType": "user-provided",
-        "publishedOrUpdatedAt": "2026-05-31",
-        "fetchedAt": "2026-05-31",
+        "publishedOrUpdatedAt": "2026-06-01",
+        "fetchedAt": "2026-06-01",
         "confidence": "high",
         "decisionImpact": "Homepage visual assets."
       }
@@ -400,7 +401,7 @@
     "referenceIntake": [
       {
         "source": "user-provided ITB screenshots",
-        "borrowed": "formal hierarchy: utility bar, strong blue nav, hero title, breadcrumb, editorial body rhythm",
+        "borrowed": "formal hierarchy: strong blue nav, hero title, breadcrumb, and editorial body rhythm",
         "notBorrowed": "ITB logo, exact colors, exact layout rhythm, brand posture"
       }
     ]
@@ -512,7 +513,8 @@
       "placeholder imagery"
     ],
     "requiredProductSignals": [
-      "UBSI campus photo",
+      "4K UBSI campus image",
+      "official HMTI logo",
       "HMTI group photo",
       "formal breadcrumb/info rail"
     ]
@@ -624,9 +626,9 @@
       "tablet": "Regroup for tablet instead of width-only desktop reduction.",
       "desktop": "Use space intentionally; avoid equal-weight modules without evidence."
     },
-    "desktop": "two-tier header, full navigation, large hero, three-column info strip",
+    "desktop": "single blue header, official logo, full navigation, large 4K hero, three-column info strip",
     "tablet": "reduced nav density, preserved hero crop, two-column sections",
-    "mobile": "compact header, stacked CTAs, wrapped breadcrumb/info, no horizontal overflow"
+    "mobile": "compact logo header, menu trigger, stacked CTAs, wrapped breadcrumb/info, no horizontal overflow"
   },
   "motionSystem": {
     "allowMeaningfulMotion": true,
@@ -728,7 +730,7 @@
       "cross-viewport-mutation"
     ],
     "scope": "Homepage-first visual update; do not redesign all pages unless requested.",
-    "assetUse": "Use provided photos in project public assets.",
+    "assetUse": "Use public/images/gallery/ChatGPT Image Jun 1, 2026, 06_22_17 PM.png through a normalized hero copy and use the HMTI logo from public images.",
     "copyPolicy": "Use factual HMTI/UBSI copy only."
   },
   "designExecutionHandoff": {
@@ -898,7 +900,8 @@
       "src/components/layout/Navbar.tsx",
       "src/components/sections/HeroSection.tsx",
       "src/components/sections/AboutPreview.tsx",
-      "src/components/sections/CollaborationCTA.tsx"
+      "src/components/sections/CollaborationCTA.tsx",
+      "src/components/layout/Footer.tsx"
     ],
     "verification": [
       "npm run validate",
@@ -1028,7 +1031,7 @@
     "validInputs": [
       "current repo",
       "user-provided ITB screenshots",
-      "provided UBSI campus photo",
+      "4K UBSI campus image in public/images/gallery",
       "provided HMTI group photo"
     ],
     "invalidInputs": [

@@ -7,7 +7,7 @@ HMTI UBSI Margonda must read as an official student association website: institu
 Primary users are students, prospective members, campus stakeholders, and external collaborators. The first viewport must answer identity, campus context, and next action quickly.
 
 ## 3. Visual Direction and Distinctive Moves
-Use a photo-led academic composition: campus building as the first visual proof, HMTI group activity as the second proof. Borrow only the institutional hierarchy from the ITB reference: utility bar, strong blue navigation, large editorial title, breadcrumb, and formal content rhythm. Do not copy ITB branding, assets, or exact layout.
+Use a photo-led academic composition: the 4K campus building image as the first visual proof, HMTI group activity as the second proof. Borrow only the institutional hierarchy from the ITB reference: strong blue navigation, large editorial title, breadcrumb, and formal content rhythm. Do not copy ITB branding, assets, or exact layout.
 
 ## 4. Color, Typography, Spacing, and Density Decisions
 Use deep UBSI blue, navy overlay, white content bands, slate text, and restrained orange accents derived from the campus photo. Use a serif display style for the hero title and strong sans-serif UI labels. Keep spacing generous, section edges sharp, and surfaces low-radius or square.
@@ -16,7 +16,7 @@ Use deep UBSI blue, navy overlay, white content bands, slate text, and restraine
 Semantic roles: `institutional-blue`, `campus-navy`, `campus-orange`, `surface-white`, `text-strong`, and `text-muted`. Component styling should consume semantic roles instead of one-off decorative colors.
 
 ## 6. Responsive Strategy and Cross-Viewport Adaptation Matrix
-Desktop: show full utility nav, full horizontal menu, large image-led hero, and three-column info strip. Tablet: preserve hero impact and reduce nav density. Mobile: prioritize logo, menu trigger, title, primary CTA, breadcrumb, and stacked info items; avoid horizontal overflow.
+Desktop: show one decisive horizontal menu, official HMTI logo, large image-led hero, and three-column info strip. Tablet: preserve hero impact and reduce nav density. Mobile: prioritize logo, menu trigger, title, primary CTA, breadcrumb, and stacked info items; avoid horizontal overflow.
 
 ## 7. Motion and Interaction Rules
 Use restrained 150-400ms reveal motion for content blocks and hover states only. Avoid decorative animation, neon glow, parallax overload, and motion that hides primary content before hydration.
@@ -25,7 +25,7 @@ Use restrained 150-400ms reveal motion for content blocks and hover states only.
 Prefer bands, rails, editorial blocks, image frames, and sharp dividers over rounded SaaS cards. Buttons may have small radius for tap clarity but should not look playful.
 
 ## 9. Context Hygiene and Source Boundaries
-Valid sources are the user-provided ITB screenshots, the provided UBSI campus photo, the provided HMTI group photo, and current repo content. External references may influence quality bar only, not copied visual identity.
+Valid sources are the user-provided ITB screenshots, the 4K UBSI campus image in `public/images/gallery`, the provided HMTI group photo, and current repo content. External references may influence quality bar only, not copied visual identity.
 
 ## 10. Accessibility Non-Negotiables
 Maintain WCAG 2.2 AA contrast, visible focus states, keyboard-accessible navigation, safe tap targets, readable mobile line lengths, and reduced-motion compatibility.

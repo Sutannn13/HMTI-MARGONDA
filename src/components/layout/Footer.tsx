@@ -3,8 +3,7 @@
 import Link from 'next/link';
 import { siteConfig } from '@/data/site';
 import { footerNavigation } from '@/data/navigation';
-import { Instagram, Mail, MapPin, Phone } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Instagram, Mail, MapPin } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -14,8 +13,12 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                <span className="text-white font-bold text-lg">H</span>
+              <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border bg-white">
+                <img
+                  src="/images/logo/hmti-margonda.png"
+                  alt="Logo HMTI UBSI Margonda"
+                  className="h-full w-full object-contain"
+                />
               </div>
               <div>
                 <p className="font-bold text-foreground">HMTI UBSI</p>

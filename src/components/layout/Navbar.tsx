@@ -4,9 +4,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { navigationData, type NavItem } from '@/data/navigation';
-import { siteConfig } from '@/data/site';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, ChevronDown, Instagram, Mail } from 'lucide-react';
+import { Menu, ChevronDown } from 'lucide-react';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -94,44 +93,15 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full shadow-sm">
-      <div className="hidden border-b border-white/10 bg-[#17313f] text-white md:block">
-        <div className="container flex h-10 items-center justify-between px-4 md:px-6">
-          <div className="flex items-center gap-4 text-xs text-white/80">
-            <a
-              href={`https://instagram.com/${siteConfig.social.instagram.replace('@', '')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 hover:text-white"
-            >
-              <Instagram className="h-4 w-4" />
-              {siteConfig.social.instagram}
-            </a>
-            <a
-              href={`mailto:${siteConfig.social.email}`}
-              className="inline-flex items-center gap-2 hover:text-white"
-            >
-              <Mail className="h-4 w-4" />
-              {siteConfig.social.email}
-            </a>
-          </div>
-          <div className="flex items-center gap-6 text-xs font-semibold uppercase text-white/80">
-            <Link href="/kegiatan" className="hover:text-white">
-              Kegiatan
-            </Link>
-            <Link href="/galeri" className="hover:text-white">
-              Galeri
-            </Link>
-            <Link href="/kolaborasi" className="hover:text-white">
-              Kolaborasi
-            </Link>
-          </div>
-        </div>
-      </div>
       <div className="bg-[#0067b1] text-white">
         <div className="container flex min-h-16 items-center justify-between px-4 py-3 md:px-6">
           <Link href="/" className="flex min-w-0 items-center gap-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/30 bg-white/10">
-              <span className="text-base font-black text-white">H</span>
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/30 bg-white shadow-sm">
+              <img
+                src="/images/logo/hmti-margonda.png"
+                alt="Logo HMTI UBSI Margonda"
+                className="h-full w-full object-contain"
+              />
             </div>
             <div className="min-w-0">
               <p className="truncate text-base font-extrabold uppercase leading-tight text-white md:text-xl">
@@ -163,8 +133,12 @@ export function Navbar() {
             <SheetContent side="right" className="w-[320px] sm:w-[400px]">
               <div className="mt-6 flex flex-col gap-6">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-600">
-                    <span className="text-base font-black text-white">H</span>
+                  <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border bg-white">
+                    <img
+                      src="/images/logo/hmti-margonda.png"
+                      alt="Logo HMTI UBSI Margonda"
+                      className="h-full w-full object-contain"
+                    />
                   </div>
                   <div>
                     <p className="font-bold text-foreground">HMTI UBSI Margonda</p>

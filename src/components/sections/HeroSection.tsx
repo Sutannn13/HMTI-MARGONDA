@@ -12,8 +12,8 @@ export function HeroSection() {
         className="relative flex min-h-[66vh] items-center justify-center overflow-hidden bg-blue-950 md:min-h-[74vh]"
       >
         <img
-          src="/images/hero/ubsi-campus-margonda.webp"
-          alt="Gedung Universitas Bina Sarana Informatika Margonda"
+          src="/images/hero/ubsi-campus-margonda-4k.png"
+          alt="Gedung Universitas Bina Sarana Informatika Margonda resolusi tinggi"
           loading="eager"
           decoding="async"
           className="absolute inset-0 h-full w-full object-cover object-center"
